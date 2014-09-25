@@ -17,6 +17,8 @@ class CutBlockCommand(MyCommand):
         self.view.run_command("expand_selection", {"to": "line"})
         self.view.run_command("cut")
 
+        # vintageous doesn't exit out of visual mode
+        self.view.run_command("_enter_normal_mode")
 
 class CopyBlockCommand(MyCommand):
     def run(self, edit):
@@ -26,3 +28,6 @@ class CopyBlockCommand(MyCommand):
         # region
         s = self.view.sel()[0]
         self.set_cursor_to(s.a)
+
+        # vintageous doesn't exit out of visual mode
+        self.view.run_command("_enter_normal_mode")
